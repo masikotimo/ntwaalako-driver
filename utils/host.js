@@ -1,3 +1,3 @@
-const baseUrl = 'https://1d76-41-75-171-22.ngrok-free.app/';
+const baseUrl = 'https://hitchnride.herokuapp.com/';
 
 module.exports = { baseUrl };

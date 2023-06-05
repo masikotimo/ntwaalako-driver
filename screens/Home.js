@@ -32,6 +32,37 @@ export default function Home() {
       });
   };
 
+  const updateTrip = (trip, action) => {
+    const date = moment().format();
+    const tripDetails = trip;
+    const updateDetails = {
+      date: tripDetails.trip.date,
+      destination: tripDetails.trip.destination,
+      trip: tripDetails.trip.id,
+      pick_up_location: tripDetails.trip.pick_up_location,
+      reason: tripDetails.trip.reason,
+      status :"Approved"
+    };
+
+    if (action == "end" || action == "start"){
+      updateDetails.ended_at = action === 'end' ? date : tripDetails.trip.ended_at
+      updateDetails.started_at = action === 'start' ? date : tripDetails.trip.started_at
+    
+    }
+    axios
+      .put(
+        `${baseUrl}passengertrips/${tripDetails.passenger.id}/${tripDetails.id}/update/`,
+        updateDetails
+      )
+      .then((response) => {
+        Alert.alert('Car Booking', `Trip has  been ${action}ed`)
+      }
+      )
+      .catch((error) => {
+        console.error('There was an error!', error);
+      });
+  };
+
 
 
   const showTrip = (items) => {
@@ -44,7 +75,21 @@ export default function Home() {
           <CardContent text={`To : ${x.trip.destination}`} />
           <CardContent text={`Status: ${x.trip.status} `} />
           <CardAction separator={true} inColumn={false}>
-              <CardButton onPress={() => settleTrip(x.id)} title="Settle Trip" color="#FEB557" />
+          <CardButton
+                onPress={() => updateTrip(x, "Approve")}
+                title="Approve Trip"
+                color="#FEB557"
+              />
+              <CardButton
+                onPress={() => updateTrip(x, "start")}
+                title="Begin Trip"
+                color="#FEB557"
+              />
+              <CardButton
+                onPress={() => updateTrip(x, "end")}
+                title="End Trip"
+                color="#FEB557"
+              />
             </CardAction>
           </Card>
         );
