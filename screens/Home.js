@@ -12,6 +12,9 @@ const { width } = Dimensions.get('screen');
 
 export default function Home() {
   const trips = useSelector(state => state.trips);
+  const approvedTrips = useSelector((state) => state.approvedTrips);
+  const pendingTrips = useSelector((state) => state.pendingTrips);
+  const whichTrip = useSelector((state) => state.whichTrip);
 
   useEffect(() => {
     // Any side effects you want to apply when the component mounts
@@ -75,21 +78,26 @@ export default function Home() {
           <CardContent text={`To : ${x.trip.destination}`} />
           <CardContent text={`Status: ${x.trip.status} `} />
           <CardAction separator={true} inColumn={false}>
-          <CardButton
+
+          {x.trip.status == "Pending" && (<CardButton
                 onPress={() => updateTrip(x, "Approve")}
                 title="Approve Trip"
                 color="#FEB557"
-              />
-              <CardButton
+              />)}
+
+          {x.trip.status == "Approved" && !x.trip.started_at && (<CardButton
                 onPress={() => updateTrip(x, "start")}
-                title="Begin Trip"
+                title="Start Trip"
                 color="#FEB557"
-              />
-              <CardButton
+              />)}
+          
+
+          {x.trip.status == "Started" && x.trip.started_at && (<CardButton
                 onPress={() => updateTrip(x, "end")}
                 title="End Trip"
                 color="#FEB557"
-              />
+              />)}
+
             </CardAction>
           </Card>
         );
@@ -103,14 +111,12 @@ export default function Home() {
   
   
   
-  const ApprovedTripss =  showTrip(trips);
-  
 
-  return (
-    <ScrollView>
-      {ApprovedTripss}
-    </ScrollView>
-  );
+  const ApprovedTripss = whichTrip
+    ? showTrip(approvedTrips)
+    : showTrip(pendingTrips);
+
+  return <ScrollView>{ApprovedTripss}</ScrollView>;
 }
 
 const styles = StyleSheet.create({

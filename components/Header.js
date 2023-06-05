@@ -56,12 +56,28 @@ class Header extends React.Component {
   }
 
   getItems() {
-    const { driverDetails,setTrips } = this.props;
+    const { driverDetails,setTrips,setPendingTripsDetails,setApprovedTripsDetails } = this.props;
       axios
         .get(`${baseUrl}passengertrips/`)
         .then((response) => {
           const items = response.data
           setTrips(items)
+
+          const approvedTrips=response.data.filter((x) => {
+            if (x.trip.status === 'Approved') {
+              return true;
+            }
+            return false;
+          });
+          setApprovedTripsDetails(approvedTrips)
+          const pendingTrips=response.data.filter((x) => {
+            if (x.trip.status === 'Pending') {
+              return true;
+            }
+            return false;
+          });
+  
+          setPendingTripsDetails(pendingTrips)
         })
         .catch((error) => {
           console.log(error);
@@ -139,13 +155,13 @@ class Header extends React.Component {
 
     return (
       <Block row style={styles.tabs}>
-        <Button shadowless style={[styles.tab, styles.divider]} onPress={() => console.log('pressed me')}>
+        <Button shadowless style={[styles.tab, styles.divider]} onPress={() => setTripToPending()}>
           <Block row middle>
             <Icon name="grid" family="feather" style={{ paddingRight: 8 }} />
             <Text size={16} style={styles.tabTitle}>{tabTitleLeft || 'Upcoming Trips'}</Text>
           </Block>
         </Button>
-        <Button shadowless style={styles.tab} onPress={() => console.log('pressed me')}>
+        <Button shadowless style={styles.tab} onPress={() => setTripToApproved()}>
           <Block row middle>
             <Icon size={16} name="camera-18" family="GalioExtra" style={{ paddingRight: 8 }} />
             <Text size={16} style={styles.tabTitle}>{tabTitleRight || 'Trips Approved'}</Text>
@@ -217,6 +233,14 @@ function mapDispatchToProps(dispatch) {
   return {
     setTrips: (trips) =>
       dispatch({ type: 'SET_TRIPS', trips }),
+    setTripToPending: () =>
+    dispatch({ type: 'SET_TRIP_TO_PENDING' }),
+    setTripToApproved: () =>
+    dispatch({ type: 'SET_TRIP_TO_APPROVED' }),
+    setApprovedTripsDetails: (tripDetails) =>
+    dispatch({ type: 'SET_APPROVED_TRIP_DETAILS', tripDetails }),
+    setPendingTripsDetails: (tripDetails) =>
+    dispatch({ type: 'SET_PENDING_TRIP_DETAILS', tripDetails }),
       
   };
 }
