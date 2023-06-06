@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "ntwaalako-driver",
-    "description": "ntwaalako-driver",
-    "slug": "ntwaalako-driver",
+    "name": "HitchnRide-driver",
+    "description": "HitchnRide-driver",
+    "slug": "HitchnRide-driver",
     "privacy": "unlisted",
     "platforms": [
       "ios",

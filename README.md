@@ -1,5 +1,5 @@
 
-# **ntwaalako app- driver**
+# **HitchnRide app- driver**
 
 
 
@@ -7,7 +7,7 @@
 Just follow the steps below:
 
 ### Navigate to the root folder of the repo:
-$ `cd ntwaalako app- driver`
+$ `cd HitchnRide app- driver`
 
 ### Install the required dependencies:
 $ `npm install`

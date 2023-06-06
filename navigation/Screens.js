@@ -25,7 +25,7 @@ const Drawer = createDrawerNavigator();
 
 const profile = {
   avatar: Images.Profile,
-  name: "Timothy M",
+  name: "John Doe ",
   type: "NIRA",
   plan: "CO",
   rating: 4.8
@@ -290,7 +290,7 @@ function AppStack(props) {
       />
       <Drawer.Screen
         name="Log Out"
-        component={ProScreen}
+        component={Login}
         options={{
           drawerIcon: ({ focused }) => (
             <Icon
@@ -309,6 +309,8 @@ function AppStack(props) {
 export default function OnboardingStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="none">
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="App" component={AppStack} />
       <Stack.Screen
         name="Onboarding"
         component={OnboardingScreen}
@@ -316,8 +318,6 @@ export default function OnboardingStack(props) {
           headerTransparent: true
         }}
       />
-      <Stack.Screen name="App" component={AppStack} />
-      <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
   );
 }

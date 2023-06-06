@@ -147,11 +147,11 @@ export class Request extends React.Component {
         // this.headers
       )
       .then(async (response) => {
-        Alert.alert('Car Booking', 'You have successfully sent a Request ');
+        Alert.alert('Hitch N Ride', 'You have successfully sent a Request ');
         navigation.navigate('Trip');
       })
       .catch((error) => {
-        Alert.alert('Car Booking', 'Oops you have to be connected to the Internet ');
+        Alert.alert('Hitch N Ride', 'Oops you have to be connected to the Internet ');
       });
   };
 

@@ -54,12 +54,12 @@
 //       })
 //       .then((response) => {
 //         console.log(response);
-//         Alert.alert('Car Booking', 'You have successfully Signed up ');
+//         Alert.alert('Hitch N Ride', 'You have successfully Signed up ');
 //         this.props.navigation.navigate('LoginScreen');
 //       })
 //       .catch((error) => {
 //         console.log(error);
-//         Alert.alert('Car Booking', 'Oops you have to be connected to the Internet ');
+//         Alert.alert('Hitch N Ride', 'Oops you have to be connected to the Internet ');
 //       });
 //   };
 

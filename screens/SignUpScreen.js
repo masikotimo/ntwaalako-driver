@@ -41,11 +41,11 @@
 //         // this.headers
 //       )
 //       .then(async (response) => {
-//         Alert.alert('Car Booking', 'An email has been sent');
+//         Alert.alert('Hitch N Ride', 'An email has been sent');
 //         navigation.navigate('LoginScreen');
 //       })
 //       .catch((error) => {
-//         Alert.alert('Car Booking', 'Oops you have to be connected to the Internet ');
+//         Alert.alert('Hitch N Ride', 'Oops you have to be connected to the Internet ');
 //       });
 //   };
 

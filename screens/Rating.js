@@ -29,11 +29,11 @@ export default function Rating(props) {
             // this.headers
           )
           .then(async (response) => {
-            Alert.alert('Car Booking', 'Thank you for Rating that passenger ');
+            Alert.alert('Hitch N Ride', 'Thank you for Rating that passenger ');
             props.navigation.navigate('Home');
           })
           .catch((error) => {
-            Alert.alert('Car Booking', 'Oops please contact the maintainer ');
+            Alert.alert('Hitch N Ride', 'Oops please contact the maintainer ');
           });
       };
     

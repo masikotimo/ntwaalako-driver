@@ -52,13 +52,21 @@ export default function Home() {
       updateDetails.started_at = action === 'start' ? date : tripDetails.trip.started_at
     
     }
+
+    if (action == "end"){
+      updateDetails.status ="Ended"
+    }
+    if (action == "start"){
+      updateDetails.status ="Started"
+    }
+
     axios
       .put(
         `${baseUrl}passengertrips/${tripDetails.passenger.id}/${tripDetails.id}/update/`,
         updateDetails
       )
       .then((response) => {
-        Alert.alert('Car Booking', `Trip has  been ${action}ed`)
+        Alert.alert('Hitch N Ride', `Trip has  been ${action}ed`)
       }
       )
       .catch((error) => {
@@ -73,10 +81,11 @@ export default function Home() {
       return items.map((x, k) => {
         return (
           <Card key={x.id} >
-            <CardTitle subtitle={`Name : ${x.passenger.user.email}`} />
+          <CardTitle subtitle={`Name : ${x.passenger.user.email}`} />
           <CardContent text={`From : ${x.trip.pick_up_location}`} />
           <CardContent text={`To : ${x.trip.destination}`} />
           <CardContent text={`Status: ${x.trip.status} `} />
+          <CardContent text={`Notes: ${x.trip.reason} `} />
           <CardAction separator={true} inColumn={false}>
 
           {x.trip.status == "Pending" && (<CardButton

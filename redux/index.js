@@ -168,12 +168,9 @@ const reducer = (state = initialState, action) => {
       return { ...state, passengerId: action.passengerId };
 
       case 'SET_APPROVED_TRIP_DETAILS':
-      console.log("approved trips",action.tripDetails)
       return { ...state, approvedTrips: action.tripDetails };
       
       case 'SET_PENDING_TRIP_DETAILS':
-      console.log("pending trips",action.tripDetails)
-
       return { ...state, pendingTrips: action.tripDetails };
       case 'SET_TRIP_TO_PENDING':
       return { ...state, whichTrip: false };
