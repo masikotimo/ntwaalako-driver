@@ -8,7 +8,7 @@
       "ios",
       "android"
     ],
-    "version": "1.8.0",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "splash": {
@@ -24,6 +24,14 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8ebbfbd7-29f0-4dd9-8342-dc646949ab62"
+      }
+    },
+    "android": {
+      "package": "com.hitchnride.driver"
     }
   }
 }

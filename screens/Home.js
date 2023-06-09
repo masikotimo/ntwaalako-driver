@@ -6,34 +6,47 @@ import moment from 'moment';
 import { baseUrl } from '../utils/host';
 import { Icon } from '../components/';
 import axios from "axios";
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 
 const { width } = Dimensions.get('screen');
 
 export default function Home() {
   const trips = useSelector(state => state.trips);
+  const driverDetails = useSelector(state => state.driverDetails);
   const approvedTrips = useSelector((state) => state.approvedTrips);
   const pendingTrips = useSelector((state) => state.pendingTrips);
   const whichTrip = useSelector((state) => state.whichTrip);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Any side effects you want to apply when the component mounts
   }, []);
 
-  const settleTrip = (tripId) => {
-    axios
-      .post(`${baseUrl}/passengertrips/settle-trip`, {
-        passenger_trip: tripId,
-      })
-      .then((response) => {
-        console.log("I settled trip",response.data);
-        Alert.alert(response.data)
-        // Update state to re-render the component with updated data
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const getItems=()=> {
+      axios
+        .get(`${baseUrl}passengertrips/${driverDetails.driver_id}/`)
+        .then((response) => {
+          const items = response.data
+          dispatch({ type: 'SET_TRIPS', trips:items })
+          const approvedTrips=response.data.filter((x) => {
+            if (x.trip.status != 'Pending') {
+              return true;
+            }
+            return false;
+          });
+          dispatch({ type: 'SET_APPROVED_TRIP_DETAILS', tripDetails: approvedTrips })
+          const pendingTrips=response.data.filter((x) => {
+            if (x.trip.status === 'Pending') {
+              return true;
+            }
+            return false;
+          });
+          dispatch({ type: 'SET_PENDING_TRIP_DETAILS', tripDetails: pendingTrips })
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }
 
   const updateTrip = (trip, action) => {
     const date = moment().format();
@@ -66,6 +79,7 @@ export default function Home() {
         updateDetails
       )
       .then((response) => {
+        getItems()
         Alert.alert('Hitch N Ride', `Trip has  been ${action}ed`)
       }
       )

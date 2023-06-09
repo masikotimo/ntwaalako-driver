@@ -97,12 +97,13 @@ export class Login extends React.Component {
       })
       .then(async (response) => {
         let data = response.data;
+        console.log("loginned data",data)
         setdriverDetails(data);
         this.checkFirstTime(data.driver_id);
         this.getProfile(data.user_id);
         navigation.navigate("App");
 
-        Alert.alert("Car Booking", "You have Logged in ");
+        console.log("Done")
       })
       .catch((error) => {
         Alert.alert(

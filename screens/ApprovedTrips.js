@@ -34,20 +34,10 @@ export class ApprovedTrips extends Component {
   getItems() {
     const { driverDetails } = this.props;
 
-    console.log('driver details',driverDetails)
     axios
-      .get(`${baseUrl}passengertrips/`)
+      .get(`${baseUrl}passengertrips/${driverDetails.driver_id}/`)
       .then((response) => {
-
-        const items = response.data.filter((x) => {
-          if (x.trip.driver.id === driverDetails.driver_id) {
-            return true;
-          }
-          return false;
-        });
-
-        console.log("my items", response.data)
-        this.setState({ ...this.state, items, isloaded: true });
+        this.setState({ ...this.state, items:response.data, isloaded: true });
       })
       .catch((error) => {
         console.log(error);

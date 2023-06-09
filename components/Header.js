@@ -58,13 +58,13 @@ class Header extends React.Component {
   getItems() {
     const { driverDetails,setTrips,setPendingTripsDetails,setApprovedTripsDetails } = this.props;
       axios
-        .get(`${baseUrl}passengertrips/`)
+        .get(`${baseUrl}passengertrips/${driverDetails.driver_id}/`)
         .then((response) => {
           const items = response.data
           setTrips(items)
 
           const approvedTrips=response.data.filter((x) => {
-            if (x.trip.status === 'Approved') {
+            if (x.trip.status != 'Pending') {
               return true;
             }
             return false;

@@ -77,7 +77,7 @@ const initialState = {
   driverDetails: {},
   profile:{},
   passengerId:'',
-  pendingTrips: {},
+  pendingTrips: [],
   approvedTrips: [
     {
         "id": "9f1e083d-87c9-4fb0-a096-b7a297c0558e",
@@ -175,7 +175,6 @@ const reducer = (state = initialState, action) => {
       case 'SET_TRIP_TO_PENDING':
       return { ...state, whichTrip: false };
       case 'SET_TRIP_TO_APPROVED':
-      console.log('here bwewchi')
       return { ...state, whichTrip: true };
 
     
@@ -192,7 +191,7 @@ const reducer = (state = initialState, action) => {
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['counter','trips'],
+  blacklist: ['counter','trips','pendingTrips','approvedTrips'],
   // stateReconciler: autoMergeLevel2,
 };
 const persistedReducer = persistReducer(persistConfig, reducer);
