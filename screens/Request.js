@@ -151,7 +151,7 @@ export class Request extends React.Component {
         navigation.navigate('Trip');
       })
       .catch((error) => {
-        Alert.alert('Hitch N Ride', 'Oops you have to be connected to the Internet ');
+        Alert.alert('Hitch N Ride', 'Oops you the request has not been sent ');
       });
   };
 

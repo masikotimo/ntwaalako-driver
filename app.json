@@ -31,7 +31,8 @@
       }
     },
     "android": {
-      "package": "com.hitchnride.driver"
+      "package": "com.hitchnride.driver",
+      "googleServicesFile": "./google-services.json"
     }
   }
 }

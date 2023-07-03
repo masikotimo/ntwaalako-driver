@@ -54,19 +54,6 @@ export class Login extends React.Component {
       });
   };
 
-  checkFirstTime = async (driver) => {
-    try {
-      await AsyncStorage.getItem("driverTokenSaved").then(async (value) => {
-        if (value == null) {
-          await this.saveTokenToDB(driver);
-          AsyncStorage.setItem("driverTokenSaved", "1");
-        }
-      });
-    } catch (e) {
-      // saving error
-    }
-  };
-
   saveTokenToDB = async (driver) => {
     try {
       const value = await AsyncStorage.getItem("drivernotificationtoken");
@@ -99,7 +86,7 @@ export class Login extends React.Component {
         let data = response.data;
         console.log("loginned data",data)
         setdriverDetails(data);
-        this.checkFirstTime(data.driver_id);
+        this.saveTokenToDB(data.driver_id);
         this.getProfile(data.user_id);
         navigation.navigate("App");
 
@@ -107,8 +94,8 @@ export class Login extends React.Component {
       })
       .catch((error) => {
         Alert.alert(
-          "Car Booking",
-          "Oops you have to be connected to the Internet "
+          "Hitch N Ride",
+          "Invalid username/password "
         );
       });
   };

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "226506229426",
+    "project_id": "hitch-and-ride",
+    "storage_bucket": "hitch-and-ride.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226506229426:android:d2ff3dd69dea80d9f46bab",
+        "android_client_info": {
+          "package_name": "com.hitchnride.driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226506229426-7i84imueoq8pmusfnlro57t0dsgdeidd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR4TeiyCaEgWVnxzV2fwXXLN9xb9rieX4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226506229426-7i84imueoq8pmusfnlro57t0dsgdeidd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
